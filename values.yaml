@@ -10,7 +10,8 @@ gateway:
       namespacePolicy:
         from: All
 service:
-  externalTrafficPolicy: Local
+  spec:
+    externalTrafficPolicy: Local # 👈 Preserve client source IP
   annotations:
     loadbalancer.openstack.org/proxy-protocol: "true" # 👈 Amphora LB Proxy Protocol einschalten
 logs:
@@ -41,6 +42,7 @@ certificatesResolvers:
 persistence:
   enabled: true
 deployment:
+  kind: DaemonSet # We use a DaemonSet to have one Traefik pod per node. This is required to use the LoadBalancer with Proxy Protocol / aka the externalTrafficPolicy.
   initContainers:
     # The "volume-permissions" init container is required if you run into permission issues.
     # Related issue: https://github.com/traefik/traefik-helm-chart/issues/396

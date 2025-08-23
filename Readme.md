@@ -14,17 +14,17 @@ helm repo update
 
 ### Install the chart
 ```bash
-helm install traefik traefik/traefik -f values.yaml --wait
+helm install traefik traefik/traefik -f values.yaml --wait --namespace traefik --create-namespace
 ```
 
 ### Update the chart
 ```bash
-helm upgrade traefik traefik/traefik -f values.yaml --wait
+helm upgrade traefik traefik/traefik -f values.yaml --wait --namespace traefik 
 ```
 
 ### Uninstall the chart
 ```bash
-helm uninstall traefik
+helm uninstall traefik --namespace traefik --wait
 ```
 
 ## Usage
