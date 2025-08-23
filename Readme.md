@@ -1,6 +1,6 @@
 # Tractor k8s ingress
 
-This a helm char values file for deploying [Traefik v3](https://doc.traefik.io/traefik/) as an ingress controller in a Kubernetes cluster on Infomaniak Kubernetes Service.
+This a helm chart values file for deploying [Traefik v3](https://doc.traefik.io/traefik/) as an ingress controller in a Kubernetes cluster on Infomaniak Kubernetes Service.
 
 It is based on the [official Traefik helm chart](https://doc.traefik.io/traefik/getting-started/kubernetes/).
 
