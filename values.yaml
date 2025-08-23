@@ -1,0 +1,25 @@
+ingressRoute:
+  dashboard:
+    enabled: true
+providers:
+  kubernetesGateway:
+    enabled: true
+gateway:
+  listeners:
+    web:
+      namespacePolicy:
+        from: All
+service:
+  externalTrafficPolicy: Local
+  annotations:
+    loadbalancer.openstack.org/proxy-protocol: "true" # 👈 Amphora LB Proxy Protocol einschalten
+logs:
+  access:
+    enabled: true
+ports:
+  web:
+    proxyProtocol:
+      insecure: true
+  websecure:
+    proxyProtocol:
+      insecure: true

@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: whoami
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web # necessary, since we have multiple entrypoints
+
+spec:
+  rules:
+    - host: whoami.k8s.tractor.scout.ch
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: whoami
+                port:
+                  number: 80
