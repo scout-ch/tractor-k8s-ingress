@@ -3,7 +3,8 @@ kind: Ingress
 metadata:
   name: whoami
   annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: web # necessary, since we have multiple entrypoints
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure # necessary, since we have multiple entrypoints
+    traefik.ingress.kubernetes.io/router.tls.certresolver: letsencrypt
 
 spec:
   rules:
@@ -17,3 +18,6 @@ spec:
                 name: whoami
                 port:
                   number: 80
+  tls:
+    - hosts:
+        - whoami.k8s.tractor.scout.ch
