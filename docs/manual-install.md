@@ -1,3 +1,31 @@
+# Manual usage
+
+To use these instructions, create a file valled `values.yaml` with the content found below.
+
+## Add the Traefik helm repository
+```bash
+helm repo add traefik https://traefik.github.io/charts
+helm repo update
+```
+
+## Install the chart
+```bash
+helm install traefik traefik/traefik -f values.yaml --wait --namespace traefik --create-namespace
+```
+
+## Update the chart
+```bash
+helm upgrade traefik traefik/traefik -f values.yaml --wait --namespace traefik 
+```
+
+## Uninstall the chart
+```bash
+helm uninstall traefik --namespace traefik --wait
+```
+
+## Values file
+
+```yaml
 ingressRoute:
   dashboard:
     enabled: true
@@ -43,7 +71,7 @@ persistence:
   enabled: true
 deployment:
   initContainers:
-    # The "volume-permissions" init container is required if you run into permission issues.
+    # The "volume-permissions" init container is required if you run into permission issues. This seems to be the case for Infomaniak
     # Related issue: https://github.com/traefik/traefik-helm-chart/issues/396
     - name: volume-permissions
       image: busybox:1.36
@@ -60,3 +88,4 @@ deployment:
       volumeMounts:
         - name: data
           mountPath: /data
+```
