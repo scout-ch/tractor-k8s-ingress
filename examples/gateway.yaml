@@ -8,7 +8,7 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt
 spec:
   gatewayClassName: traefik
-
+  # Only Routes from the same namespace are allowed.
   listeners:
     # optional, only if you want to expose port 80 directly.
     - name: http

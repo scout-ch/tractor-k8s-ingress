@@ -5,7 +5,7 @@ metadata:
   namespace: whoami
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure # necessary, since we have multiple entrypoints
-    traefik.ingress.kubernetes.io/router.tls.certresolver: letsencrypt
+    cert-manager.io/cluster-issuer: letsencrypt
 
 spec:
   rules:
@@ -22,3 +22,4 @@ spec:
   tls:
     - hosts:
         - whoami.k8s.tractor.scout.ch
+      secretName: tls-cert

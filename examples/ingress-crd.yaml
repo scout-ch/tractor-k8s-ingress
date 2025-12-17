@@ -1,3 +1,17 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: whoami
+  namespace: whoami
+spec:
+  dnsNames:
+    - whoami.k8s.tractor.scout.ch
+  issuerRef:
+    group: cert-manager.io
+    kind: ClusterIssuer
+    name: letsencrypt
+  secretName: secret-tls
+---
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
@@ -13,4 +27,4 @@ spec:
         - name: whoami
           port: 80
   tls:
-    certResolver: letsencrypt
+    secretName: secret-tls
