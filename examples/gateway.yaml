@@ -2,18 +2,18 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
-  name: traefik-gateway
+  name: whoami
   namespace: whoami
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt
 spec:
   gatewayClassName: traefik
 
-  # Only Routes from the same namespace are allowed.
   listeners:
+    # optional, only if you want to expose port 80 directly.
     - name: http
       protocol: HTTP
-      port: 8000
+      port: 8000 # Default traefik helm chart port, will be mapped to 80
       hostname: whoami.k8s.tractor.scout.ch
       allowedRoutes:
         namespaces:
@@ -21,7 +21,7 @@ spec:
 
     - name: https
       protocol: HTTPS
-      port: 8443
+      port: 8443 # Default traefik helm chart port, will be mapped to 443
       hostname: whoami.k8s.tractor.scout.ch
       tls:
         mode: Terminate
