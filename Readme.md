@@ -13,7 +13,9 @@ This assumes, traefik is already installed in the cluster (eg. using FluxCD, see
 
 ## Usage
 
-To use the ingress controller, you can create a regular Kubernetes Ingress resource or a Traefik IngressRoute resource (see [examples](./examples/)). Only use one of `ingress.yaml` or `ingress-crd.yaml`. You can also use the Gateway API, however we have not yet tested that.
+The recommended approach is to use the Kubernetes Gateway API. See [examples](./examples/) for alls supported usaged. There is `whoami.yaml` whic illustrates a sample application.
+
+However, we still support ingress resources and you can also use the traefik ingress crds.
 
 > [!WARNING]  
 > You need to set the DNS before you deploy your ingress, otherwise traefik will fail to get a certificate.
